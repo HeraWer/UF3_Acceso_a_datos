@@ -1,0 +1,97 @@
+<Catalog>
+    <Game id="bk101">
+        <Developers>
+            <Developer>Epic Games</Developer>
+        </Developers>
+        <Publisher>Epic Games</Publisher>
+        <Title>Fortnite</Title>
+        <Genres>
+            <Genre>Survival</Genre>
+            <Genre>Third Person Shooter</Genre>
+            <Genre>Battle Royale</Genre>
+        </Genres>
+        <Prices>
+            <Pc>free-to-play</Pc>
+            <Ps4>free-to-play</Ps4>
+            <XboxOne>free-to-play</XboxOne>
+            <Switch>free-to-play</Switch>
+        </Prices>
+        <PublishDate>2017-07-25</PublishDate>
+        <Description>Fortnite is an online video game developed by Epic Games and released in 2017. It is available in three distinct game mode versions that otherwise share the same general gameplay and game engine: Fortnite: Save the World, a cooperative shooter-survival game for up to four players to fight off zombie-like creatures and defend objects with fortifications they can build, Fortnite Battle Royale, a free-to-play battle royale game where up to 100 players fight to be the last person standing, and Fortnite Creative, where players are given complete freedom to create worlds and battle arenas</Description>
+    </Game>
+    <Game id="bk102">
+        <Developers>
+            <Developer>Massive Entertainment</Developer>
+        </Developers>
+        <Publisher>Ubisoft</Publisher>
+        <Title>The Division 2</Title>
+        <Genres>
+            <Genre>Action Role-Playing</Genre>
+            <Genre>Survival</Genre>
+            <Genre>Third Person Shooter</Genre>
+        </Genres>
+        <Prices>
+            <Pc>49.90</Pc>
+            <Ps4>64.90</Ps4>
+            <XboxOne>64.90</XboxOne>
+        </Prices>
+        <PublishDate>2019-03-15</PublishDate>
+        <Description>Tom Clancy's The Division 2 is an upcoming online action role-playing video game developed by Massive Entertainment and published by Ubisoft. The sequel to Tom Clancy's The Division</Description>
+    </Game>
+    <Game id="bk103">
+        <Developers>
+            <Developer>Bioware</Developer>
+        </Developers>
+        <Publisher>EA</Publisher>
+        <Title>Anthem</Title>
+        <Genres>
+            <Genre>Action Role-Playing</Genre>
+            <Genre>Third Person Shooter</Genre>
+        </Genres>
+        <Prices>
+            <Pc>54.90</Pc>
+            <Ps4>64.90</Ps4>
+            <XboxOne>64.90</XboxOne>
+        </Prices>
+        <PublishDate>2019-2-22</PublishDate>
+        <Description>Anthem combines third-person shooter and action role-playing game elements in a "contiguous open world" shared with up to three other players in which they take the role of a Freelancer donning fully customizable exosuits called Javelins.</Description>
+    </Game>
+    <Game id="bk104">
+        <Developers>
+            <Developer>Bungie</Developer>
+        </Developers>
+        <Publisher>Activision</Publisher>
+        <Title>Destiny 2</Title>
+        <Genres>
+            <Genre>Action Role-Playing</Genre>
+            <Genre>Frist Person Shooter</Genre>
+        </Genres>
+        <Prices>
+            <Pc>15.89</Pc>
+            <Ps4>16.50</Ps4>
+            <XboxOne>21.90</XboxOne>
+        </Prices>
+        <PublishDate>2017-09-06</PublishDate>
+        <Description>Destiny 2 is an online-only multiplayer first-person shooter video game developed by Bungie and published by Activision.</Description>
+   </Game>
+       <Game id="bk105">
+        <Developers>
+            <Developer>Motive</Developer>
+            <Developer>Criterion</Developer>
+            <Developer>DICE</Developer>
+        </Developers>
+        <Publisher>EA</Publisher>
+        <Title>Battlefront II</Title>
+        <Genres>
+            <Genre>Third Person Shooter</Genre>
+            <Genre>Frist Person Shooter</Genre>
+        </Genres>
+        <Prices>
+            <Pc>19.90</Pc>
+            <Ps4>26.97</Ps4>
+            <XboxOne>34.38</XboxOne>
+        </Prices>
+        <PublishDate>2017-11-17</PublishDate>
+        <Description>Star Wars Battlefront II is an action shooter video game based on the Star Wars film franchise. It is the fourth major installment of the Star Wars: Battlefront series and seventh overall, and a sequel to the 2015 reboot of the series.</Description>
+   </Game>
+</Catalog>

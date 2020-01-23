@@ -1,0 +1,61 @@
+XPath
+
+- Llista tot el contingut del fitxer Games.xml
+
+//Catalog
+
+- Llista tots els ids
+
+//Game/@id
+
+- Llista tots els títols
+
+//Game/Title
+
+- Llista els títols i la data de publicació
+
+<Game>{//Game/Title | //Game/PublishDate}</Game>
+
+- Llista els jocs de la distribuidora EA del any 2019
+
+//Game[Publisher = 'EA'][starts-with(PublishDate, '2019')]
+
+- Que fa aquesta instrucció? "//Game/Genres/Genre[.="Frist Person Shooter"]/../.."
+
+Lista los juegos donde el genero es "Frist Person Shooter" y muestra el resultado Game porque /../.. es igual a /Genres/Genre 
+
+XQuery
+
+- Mostra el títol dels jocs ordenats per distribuïdora
+
+for $variable in doc("/db/xml/Catalog")//Game
+order by $variable/Publisher ascending
+return $variable/Title
+
+- Mostra títol, preu de Xbox One i el primer genere dels jocs d'EA
+
+for $variable in doc("/db/xml/Catalog")//Game
+where $variable/Publisher = 'EA'
+return ($variable/Title, $variable/Prices/XboxOne, $variable/Genres/Genre[1])
+
+- Mostra el títol i el número de desenvolupadors dels jocs que tinguin més d'un desenvolupador
+
+for $variable in doc("/db/xml/Catalog")//Game
+let $items := count($variable/Developers/Developer)
+return if ($items > 1) then
+    <Game><Title>{$variable/Title/text()}</Title><Developers>{$items}</Developers></Game>
+    else ()
+
+- Mostra el títol i la data de sortida dels jocs que al menys un dels seus generes que sigui "Third Person Shooter"
+
+for $variable in doc("/db/xml/Catalog")//Game
+where $variable/Genres/Genre = 'Third Person Shooter'
+return <Game>{$variable/Title}{$variable/PublishDate}</Game> 
+
+- Mostra el titol dels jocs amb el tag "multiplataforma" si estan disponibles per PC, PS4, Xbox One i Switch, i amb el tag ExcepteSwitch els que nomès estan disponibles per PC, PS4 i Xbox One
+
+for $variable in doc("/db/xml/Catalog")//Game
+return if(exists($variable/Prices/Switch)) then
+    <Multiplataforma>{$variable/Title/text()}</Multiplataforma>
+else
+    <ExcepteSwitch>{$variable/Title/text()}</ExcepteSwitch>
