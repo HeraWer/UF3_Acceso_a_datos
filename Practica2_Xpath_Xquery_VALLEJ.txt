@@ -1,0 +1,48 @@
+XPATH
+
+1. Nombre de ganadores de premios Nobel:
+
+//premios_nobel/premios/premio/premiado
+
+2. Premios ganados por María Curie:
+
+//premios_nobel/premios/premio[premiado = 'María Curie']
+
+O si quieres puedo poner el numero de ganados
+
+count(//premios_nobel/premios/premio[premiado = 'María Curie'])
+
+3. Nombre del premiado en 2007:
+
+//premios_nobel/premios/premio[año = '2007']/premiado/text()
+
+4. Países de origen de los premiados en Literatura:
+
+//individuo[nombre = //premio[@categoria = 'literatura']/premiado]/nacido/@pais
+
+XQUERY
+
+1. Nombre de ganadores de premios Nobel:
+
+for $variable in doc("/db/xml/premios_nobel")//premios_nobel
+return $variable/premios/premio/premiado/text()
+
+2. Premios ganados por María Curie:
+
+for $variable in doc("/db/xml/premios_nobel")//premio
+where $variable/premiado = 'María Curie'
+return $variable
+
+3. Nombre del premiado en 2007:
+
+for $variable in doc("/db/xml/premios_nobel")//premio
+where $variable/año = '2007'
+return $variable/premiado
+
+4. Países de origen de los premiados en Literatura:
+
+for $variable in doc("/db/xml/premios_nobel")//individuo
+let $aux := //premio[@categoria = 'literatura']/premiado
+return if($aux = $variable/nombre) then
+   $variable/nacido/@pais
+   else()
