@@ -1,0 +1,24 @@
+1. Obten los datos denominación, precio y nombre de zona de cada producto, ordenado por nombre de zona.
+
+for $var1 in doc("db/xml/productos")//produc
+for $var2 in doc("db/xml/zonas")//zona
+where $var2/cod_zona = $var1/cod_zona
+order by $var2/nombre ascending
+return <Producto>{$var1/denominacion}{$var1/precio}{$var2/nombre}</Producto>
+
+2. Obten por cada zona, el nombre de zona y el número de productos que tiene.
+
+for $var1 in doc("db/xml/productos")//produc
+for $var2 in doc("db/xml/zonas")//zona
+where $var2/cod_zona = $var1/cod_zona
+group by $var2
+return <Zona>{$var2/nombre}{count($var1)}</Zona>
+
+3. Obtén por cada zona, el nombre de la zona, su código y el nombre del producto con menos stock actual.
+
+for $var1 in doc("db/xml/productos")//produc
+for $var2 in doc("db/xml/zonas")//zona
+let $var3 := $var1/stock_actual
+where $var2/cod_zona = $var1/cod_zona
+group by $var2
+return <Zona>{$var2/nombre}{$var2/cod_zona}{$var1[stock_actual = min($var1/stock_actual)]/denominacion}</Zona>
