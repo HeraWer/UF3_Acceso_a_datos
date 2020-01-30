@@ -6,11 +6,12 @@ let $var3 := $var1/DEPT_NO
 where $var2/DEPT_NO = $var1/DEPT_NO
 return <Empleado>{$var2/APELLIDO}{$var1/DNOMBRE}{$var3}</Empleado>
 
-2. Utilizando los documentos departamentos.xml y empleados.xml, obtener por cada departamento, el nombre de departament, el número de empleados y la media de salario.
+2. Utilizando los documentos departamentos.xml y empleados.xml, obtener por cada departamento, 
+el nombre de departament, el número de empleados y la media de salario.
 
 for $var1 in doc("db/xml/departamentos")//DEP_ROW
 for $var2 in doc("db/xml/empleados")//EMP_ROW
 let $var3 := $var1/DEPT_NO
 where $var2/DEPT_NO = $var1/DEPT_NO
 group by $var3
-return <Departamento>{$var1/DNOMBRE}<NumeroEmpleados>{count($var2/APELLIDO)}</NumeroEmpleados>{$var3}</Departamento>
+return <Departamento>{$var1/DNOMBRE}<NumeroEmpleados>{count($var2/APELLIDO)}</NumeroEmpleados>{$var3}<Salario>{avg($var2/SALARIO)}</Salario></Departamento>
