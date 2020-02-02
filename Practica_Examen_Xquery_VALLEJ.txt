@@ -1,0 +1,105 @@
+1. Listar el título de todos los libros.
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+return $libros/titulo
+
+2. Listar año y título de todos los libros, ordenados por el año.
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+let $order := $libros/@anyo
+order by $order ascending
+return <Libro>{$libros/@anyo}{$libros/titulo}</Libro>
+
+3. Listar los libros cuyo precio sea 65.95
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+where $libros/precio = 65.95
+return <Libro>{$libros/titulo}</Libro>
+
+4. Listar los libros publicados antes del año 2000
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+where $libros/@anyo < 2000
+return <Libro>{$libros/titulo}</Libro>
+
+5. Listar año y título de los libros publicados por Addison-Wesley después del año 1992.
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+where $libros/editorial = 'Addison-Wesley' and $libros/@anyo > 1992
+return <Libro>{$libros/@anyo}{$libros/titulo}</Libro>
+
+6. Listar año y título de los libros que tienen más de un autor.
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+where count($libros/autor) > 1
+return <Libro>{$libros/@anyo}{$libros/titulo}</Libro>
+
+7. Listar año y título de los libros que tienen no tienen autor.
+
+<Libro anyo="1999">
+    <titulo> Economics of Technology for Digital TV</titulo>
+</Libro>
+
+8. Mostrar los apellidos de los autores que aparecen en el documento, sin repeticiones, ordenadosalfabéticamente.
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//apellido
+group by $libros
+order by $libros ascending
+return $libros
+
+9. Por cada libro, listar agrupado en un elemento <result> su titulo y autores
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+return <Result>{$libros/titulo}{$libros/autor}</Result>
+
+10. Por cada libro, obtener su título y el número de autores, agrupados en un elemento <libro>
+
+xquery version "3.1";
+for $libros in doc("db/xml/libros")//libro
+return <Libro>{$libros/titulo}<Autores>{count($libros/autor)}</Autores></Libro>
+
+1. Realiza una consulta xquery para obtener facturas que tiene cada cliente, 
+que aparezca solo el nombre del cliente y el número de factura entre las etiquetas <facturaclientes></facturaclientes>
+
+xquery version "3.1";
+for $var1 in doc("db/xml/facturas")//factura
+for $var2 in doc("db/xml/clientes")//clien
+where $var2/@numero = $var1/numcliente
+return <FacturaClientes>{$var2/nombre}<Factura>{$var1/@numero}</Factura></FacturaClientes>
+
+2. Realiza una consulta Xquery para obtener el detalle de las ventas de los productos de la factura número 10. 
+Obtén para cada producto de esa factura, el código, nombre, cantidad vendida, precio, y el importe total vendido.
+
+xquery version "3.1";
+for $var1 in doc("db/xml/productos")//product
+for $var2 in doc("db/xml/detallefacturas")//factura
+where $var2/@numero = 10 and $var2/producto/codigo = $var1/codigo
+return <Factura>{$var1/codigo}{$var1/nombre}{$var2/producto[codigo = $var1/codigo]/unidades}<Precio>{$var1/@pvp/string()}</Precio><ImporteTotal>{$var1/@pvp * $var2/producto[codigo = $var1/codigo]/unidades}</ImporteTotal></Factura>
+
+3. Realiza una consulta Xquery para obtener el detalle de las ventas de los productos de cada una de las facturas del documento detallefacturas.xml. 
+Crear una salida que muestra para cada factura, el número de factura y el codigo como atributos de la etiqueta factura. 
+Y a continuación los articulos, el código de articulo será un atributo de la etiqueta articulo.
+Ejemplo:
+<factura numero="10" codigo="FACT10">
+<articulo codigo="2"><nombre>BH Prisma</nombre>
+<cant>3</cant><pvp>900</pvp><importe>2700</importe>
+</articulo>
+.........
+</factura>
+
+xquery version "3.1";
+for $var1 in doc("db/xml/productos")//product
+for $var2 in doc("db/xml/detallefacturas")//factura
+group by $var2
+return <Factura>{
+ attribute numero {$var2/@numero},
+ attribute codigo {$var2/codigo}
+}<Articulo>{attribute codigo {$var1[codigo = $var2/producto/codigo]/codigo}}{$var1[codigo = $var2/producto/codigo]}</Articulo></Factura>
