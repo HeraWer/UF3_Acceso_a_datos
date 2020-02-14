@@ -22,6 +22,10 @@ public class Principal {
 
 	public static void main(String[] args) {
 		crearConexionMongoAtlas();
+		/*
+		 * llaman a todos los diferentes metodos
+		 */
+		
 		// insertDocumentConsole("PlayStation 1", 100);
 		// insertDocumentGame("Super Mario Galaxy", 65, "Nintendo Wii");
 		// deleteDocumentConsole("PS4");
@@ -30,7 +34,12 @@ public class Principal {
 		// updateDocumentGame("God of War 3", 1);
 		// searchSample(colConsoles, "Xbox");
 		// searchSample(colGames, "The Last of Us");
-		searchComplex(colGames, "God of War 3", 1);
+		//searchComplex(colGames, "God of War 3", 1);
+		
+		/*
+		 * Imprimen los documentos para comprobar de cada collection
+		 */
+		
 		/*printCollection(colConsoles);
 		System.out.println("------------------------");
 		printCollection(colGames);*/
